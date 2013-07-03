@@ -1,6 +1,7 @@
 package com.podts.solarserver.entity;
 
 import com.podts.solarserver.economy.Creditable;
+import com.podts.solarserver.economy.Credits;
 import com.podts.solarserver.interfaces.Namable;
 import com.podts.solarserver.network.Stream;
 import com.podts.solarserver.world.Locatable;
@@ -11,7 +12,7 @@ public class Player implements Namable, Locatable, Creditable {
 	private String name;
 	private Stream stream;
 	private Ship ship;
-	private long credits, maxcredits = 100000000;
+	private Credits credits;
 	
 	@Override
 	public String getName() {
@@ -47,33 +48,13 @@ public class Player implements Namable, Locatable, Creditable {
 	}
 	
 	@Override
-	public long getCredits() {
+	public Credits getCredits() {
 		return credits;
 	}
-	
-	@Override
-	public long getMaximumCredits() {
-		return maxcredits;
-	}
-	
-	@Override
-	public void setCredits(long credits) {
-		this.credits = credits;
-	}
 
 	@Override
-	public boolean hasCredits(long credits) {
-		return this.credits >= credits;
-	}
-
-	@Override
-	public void takeCredits(long credits) {
-		this.credits -= credits;
-	}
-
-	@Override
-	public void giveCredits(long credits) {
-		this.credits += credits;
+	public void setCredits(Credits c) {
+		credits = c;
 	}
 	
 	public Player(UnVerifyedPlayer player) {

@@ -1,13 +1,15 @@
 package com.podts.solarserver.network;
 
 import com.podts.solarserver.Util;
+import com.podts.solarserver.interfaces.HasName;
 
-public enum PacketType {
+public enum PacketType implements HasName {
 	
 	LOGIN((byte)1);
 	
 	private byte opcode;
 	
+	@Override
 	public String getName() {
 		return toString();
 	}
