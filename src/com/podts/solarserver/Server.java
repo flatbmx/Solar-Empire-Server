@@ -9,6 +9,7 @@ import com.podts.solarserver.world.Universe;
 
 public class Server implements Namable, Consolable {
 	
+	public static volatile boolean run = true;
 	private static Server instance;
 	
 	public static Server getServer() {
