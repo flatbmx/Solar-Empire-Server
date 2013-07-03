@@ -10,7 +10,6 @@ public class Ship extends Entity implements Dockable {
 	private Dock dock;
 	private ShipOwner owner;
 	private ShipModel model;
-	private double energy;
 	
 	public ShipOwner getOwner() {
 		return owner;
@@ -18,14 +17,6 @@ public class Ship extends Entity implements Dockable {
 	
 	public ShipModel getModel() {
 		return model;
-	}
-	
-	public double getEnergy() {
-		return energy;
-	}
-	
-	public void setEnergy(double energy) {
-		this.energy = energy;
 	}
 	
 	@Override
