@@ -1,6 +1,5 @@
-package com.podts.solarserver.interfaces;
+package com.podts.solarserver.entity;
 
-import com.podts.solarserver.entity.Ship;
 
 public interface ShipOwner {
 	

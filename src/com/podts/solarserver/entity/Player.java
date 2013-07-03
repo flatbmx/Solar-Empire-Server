@@ -3,7 +3,6 @@ package com.podts.solarserver.entity;
 import com.podts.solarserver.economy.Creditable;
 import com.podts.solarserver.economy.Credits;
 import com.podts.solarserver.interfaces.Namable;
-import com.podts.solarserver.interfaces.ShipOwner;
 import com.podts.solarserver.network.Stream;
 import com.podts.solarserver.world.Locatable;
 import com.podts.solarserver.world.Location;
