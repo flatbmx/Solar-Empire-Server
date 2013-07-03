@@ -52,13 +52,9 @@ public class Location {
 	}
 	
 	public boolean sameGalaxy(Locatable o) {
-		if (system == null || o == null || o.getLocation() == NOWHERE || o.getLocation().system == null)
+		if (o == null)
 			return false;
-		if (system.getGalaxy() != null && o.getLocation().system.getGalaxy() != null) {
-			if (system.getGalaxy() == o.getLocation().system.getGalaxy())
-				return true;
-		}
-		return false;
+		return sameGalaxy(o.getLocation());
 	}
 	
 	public boolean sameSystem(Location o) {
@@ -68,9 +64,9 @@ public class Location {
 	}
 	
 	public boolean sameSystem(Locatable o) {
-		if (system == null || o == null || o.getLocation() == NOWHERE || o.getLocation().system == null)
+		if (o == null)
 			return false;
-		return system == o.getLocation().system;
+		return sameSystem(o.getLocation());
 	}
 	
 	public double distance(Location o) {
@@ -78,7 +74,7 @@ public class Location {
 	}
 	
 	public double distance(Locatable o) {
-		return Math.sqrt( (x-o.getLocation().getX())*(x-o.getLocation().getX()) + (y-o.getLocation().getY())*(y-o.getLocation().getY()) );
+		return distance(o.getLocation());
 	}
 	
 	public double getAngleRads(Location o) {
@@ -86,7 +82,7 @@ public class Location {
 	}
 	
 	public double getAngleRads(Locatable o) {
-		return Math.atan2(o.getLocation().getX() - getX(), o.getLocation().getY() - getY());
+		return getAngleRads(o.getLocation());
 	}
 	
 	public double getAngleDegrees(Location o) {
@@ -94,7 +90,7 @@ public class Location {
 	}
 	
 	public double getAngleDegrees(Locatable o) {
-		return Math.toDegrees(getAngleRads(o));
+		return getAngleDegrees(o.getLocation());
 	}
 	
 	public Location(System system, double x, double y) {
