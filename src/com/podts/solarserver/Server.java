@@ -1,5 +1,7 @@
 package com.podts.solarserver;
 
+import com.podts.solarserver.world.Universe;
+
 public class Server {
 	
 	private static Server instance;
@@ -10,13 +12,19 @@ public class Server {
 		return instance;
 	}
 	
-	public static void main(String[] args) {
-		
-		getServer();
-		
+	private Universe universe;
+	
+	public Universe getUniverse() {
+		return universe;
 	}
 	
 	private Server() {
+		universe = new Universe("Uni");
+	}
+	
+	public static void main(String[] args) {
+		
+		getServer();
 		
 	}
 	
