@@ -13,7 +13,7 @@ public class Server implements Namable, Consolable {
 	
 	public static Server getServer() {
 		if (instance == null)
-			instance = new Server();
+			instance = new Server("Solar Empire Server");
 		return instance;
 	}
 	
@@ -45,7 +45,7 @@ public class Server implements Namable, Consolable {
 		return universe;
 	}
 	
-	private Server() {
+	private Server(String name) {
 		networkmanager = new NetworkManager();
 		universe = new Universe("Uni");
 	}
