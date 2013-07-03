@@ -29,6 +29,16 @@ public class Location {
 		this.system = system;
 	}
 	
+	public boolean isInGalaxy(Galaxy g) {
+		if (g == null)
+			return false;
+		if (system == null)
+			return false;
+		if (system.getGalaxy() == null)
+			return false;
+		return g.getName().equals(system.getGalaxy().getName());
+	}
+	
 	public Location(System system, double x, double y) {
 		setSystem(system);
 		setX(x);

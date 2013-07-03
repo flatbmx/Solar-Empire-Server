@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import com.podts.solarserver.interfaces.Consolable;
 import com.podts.solarserver.interfaces.Namable;
+import com.podts.solarserver.network.NetworkManager;
 import com.podts.solarserver.world.Universe;
 
 public class Server implements Namable, Consolable {
@@ -18,6 +19,7 @@ public class Server implements Namable, Consolable {
 	
 	private String name;
 	private Logger logger;
+	private NetworkManager networkmanager;
 	private Universe universe;
 	
 	@Override
@@ -35,11 +37,16 @@ public class Server implements Namable, Consolable {
 		return logger;
 	}
 	
+	public NetworkManager getNetworkManager() {
+		return networkmanager;
+	}
+	
 	public Universe getUniverse() {
 		return universe;
 	}
 	
 	private Server() {
+		networkmanager = new NetworkManager();
 		universe = new Universe("Uni");
 	}
 	
