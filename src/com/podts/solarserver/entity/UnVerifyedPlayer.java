@@ -36,7 +36,6 @@ public class UnVerifyedPlayer implements HasName, Runnable {
 
 	@Override
 	public void run() {
-		
 		while (Server.run) {
 			try {
 				if (stream.isEOF())
@@ -51,7 +50,6 @@ public class UnVerifyedPlayer implements HasName, Runnable {
 				break;
 			}
 		}
-		
 	}
 	
 }

@@ -41,6 +41,38 @@ public class Location {
 		return g.getName().equals(system.getGalaxy().getName());
 	}
 	
+	public boolean sameGalaxy(Location o) {
+		if (system == null || o == NOWHERE || o.system == null)
+			return false;
+		if (system.getGalaxy() != null && o.system.getGalaxy() != null) {
+			if (system.getGalaxy() == o.system.getGalaxy())
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean sameGalaxy(Locatable o) {
+		if (system == null || o == null || o.getLocation() == NOWHERE || o.getLocation().system == null)
+			return false;
+		if (system.getGalaxy() != null && o.getLocation().system.getGalaxy() != null) {
+			if (system.getGalaxy() == o.getLocation().system.getGalaxy())
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean sameSystem(Location o) {
+		if (system == null || o == NOWHERE || o.system == null)
+			return false;
+		return system == o.system;
+	}
+	
+	public boolean sameSystem(Locatable o) {
+		if (system == null || o == null || o.getLocation() == NOWHERE || o.getLocation().system == null)
+			return false;
+		return system == o.getLocation().system;
+	}
+	
 	public double distance(Location o) {
 		return Math.sqrt( (x-o.getX())*(x-o.getX()) + (y-o.getY())*(y-o.getY()) );
 	}

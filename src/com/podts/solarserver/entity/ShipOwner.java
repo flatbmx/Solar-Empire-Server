@@ -1,6 +1,5 @@
 package com.podts.solarserver.entity;
 
-
 public interface ShipOwner {
 	
 	public Ship getShip();
