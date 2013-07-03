@@ -1,7 +1,7 @@
 package com.podts.solarserver.entity;
 
-import com.podts.solarserver.interfaces.Locatable;
 import com.podts.solarserver.interfaces.Namable;
+import com.podts.solarserver.world.Locatable;
 import com.podts.solarserver.world.Location;
 
 public class Entity implements Locatable, Namable {

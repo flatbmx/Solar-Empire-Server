@@ -44,7 +44,7 @@ public class UnVerifyedPlayer implements HasName, Runnable {
 				while (stream.getAvailable() > 0) {
 					Packet packet = Packet.readPacket(stream);
 					if (packet != null) {
-						
+						packet.handle();
 					}
 				}
 			} catch (IOException e) {

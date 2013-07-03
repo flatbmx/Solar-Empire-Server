@@ -54,6 +54,7 @@ public class Server implements Namable, Consolable {
 	public static void main(String[] args) {
 		
 		getServer();
+		Server.run = false;
 		
 	}
 	
