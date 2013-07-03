@@ -1,8 +1,12 @@
 package com.podts.solarserver;
 
+import java.util.logging.Logger;
+
+import com.podts.solarserver.interfaces.Consolable;
+import com.podts.solarserver.interfaces.Namable;
 import com.podts.solarserver.world.Universe;
 
-public class Server {
+public class Server implements Namable, Consolable {
 	
 	private static Server instance;
 	
@@ -12,7 +16,24 @@ public class Server {
 		return instance;
 	}
 	
+	private String name;
+	private Logger logger;
 	private Universe universe;
+	
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public Logger getLogger() {
+		return logger;
+	}
 	
 	public Universe getUniverse() {
 		return universe;
