@@ -1,9 +1,7 @@
-package com.podts.solarserver.interfaces;
+package com.podts.solarserver.world;
 
 import java.util.Collection;
 
-import com.podts.solarserver.world.Locatable;
-import com.podts.solarserver.world.Location;
 
 public interface Dock extends Locatable {
 	

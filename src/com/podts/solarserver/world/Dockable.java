@@ -1,4 +1,4 @@
-package com.podts.solarserver.interfaces;
+package com.podts.solarserver.world;
 
 public interface Dockable extends Hidable {
 	

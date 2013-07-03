@@ -1,9 +1,9 @@
 package com.podts.solarserver.entity;
 
-import com.podts.solarserver.interfaces.Dock;
-import com.podts.solarserver.interfaces.Dockable;
-import com.podts.solarserver.interfaces.Hidable;
 import com.podts.solarserver.interfaces.ShipOwner;
+import com.podts.solarserver.world.Dock;
+import com.podts.solarserver.world.Dockable;
+import com.podts.solarserver.world.Hidable;
 import com.podts.solarserver.world.Location;
 
 public class Ship extends Entity implements Dockable {

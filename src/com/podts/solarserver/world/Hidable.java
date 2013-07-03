@@ -1,6 +1,5 @@
-package com.podts.solarserver.interfaces;
+package com.podts.solarserver.world;
 
-import com.podts.solarserver.world.Locatable;
 
 public interface Hidable extends Locatable {
 	
