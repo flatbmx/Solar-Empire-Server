@@ -6,14 +6,14 @@ import com.podts.solarserver.interfaces.HasName;
 
 public enum ShipModel implements HasName, HasDescription {
 	
-	GARBAGEBARGE("A stinky barge."),
-	IMPERALCRUISER("A nice shiny ship.");
+	GARBAGE_BARGE("A stinky barge."),
+	IMPERAL_CRUISER("A nice shiny ship.");
 	
 	private String description;
 	
 	@Override
 	public String toString() {
-		return Util.titleCase(super.toString());
+		return Util.titleCase(super.toString().replace("_", " "));
 	}
 	
 	@Override
