@@ -3,11 +3,12 @@ package com.podts.solarserver.entity;
 import com.podts.solarserver.economy.Creditable;
 import com.podts.solarserver.economy.Credits;
 import com.podts.solarserver.interfaces.Namable;
+import com.podts.solarserver.interfaces.ShipOwner;
 import com.podts.solarserver.network.Stream;
 import com.podts.solarserver.world.Locatable;
 import com.podts.solarserver.world.Location;
 
-public class Player implements Namable, Locatable, Creditable {
+public class Player implements Namable, Locatable, ShipOwner, Creditable {
 	
 	private String name;
 	private Stream stream;
@@ -28,20 +29,24 @@ public class Player implements Namable, Locatable, Creditable {
 		return stream;
 	}
 	
+	@Override
 	public Ship getShip() {
 		return ship;
 	}
-
+	
+	@Override
 	public void setShip(Ship ship) {
 		this.ship = ship;
 	}
 	
+	@Override
 	public Location getLocation() {
 		if (ship == null)
 			return null;
 		return ship.getLocation();
 	}
 	
+	@Override
 	public void setLocation(Location location) {
 		if (ship != null)
 			ship.setLocation(location);

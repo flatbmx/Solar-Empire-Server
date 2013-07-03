@@ -2,6 +2,8 @@ package com.podts.solarserver.world;
 
 public class Location {
 	
+	public static final Location NOWHERE = null;
+	
 	private System system;
 	private double x, y;
 
