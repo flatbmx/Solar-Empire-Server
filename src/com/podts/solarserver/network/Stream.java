@@ -53,6 +53,13 @@ public class Stream {
 		
 		lastping = System.currentTimeMillis();
 		
+		try {
+			this.writeInt(1);
+			this.flush();
+		} catch (IOException e) {
+			eof();
+		}
+		
 		//PingPacket p = new PingPacket();
 		//p.setStream(this);
 		

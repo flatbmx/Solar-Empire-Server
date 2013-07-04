@@ -46,6 +46,8 @@ public class Packet_Login extends Packet {
 		username = getPayLoad().readString();
 		password = getPayLoad().readString();
 		
+		System.out.println(version+username+password);
+		
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.podts.solarserver.network;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 import com.podts.solarserver.Server;
 import com.podts.solarserver.entity.UnVerifyedPlayer;
@@ -13,19 +14,16 @@ public class NetworkManager implements Runnable {
 	
 	public void run() {
 		
-		Socket temp;
-		
 		while(Server.run) {
 			try {
-				temp = listensocket.accept();
+				Socket temp = listensocket.accept();
 				if (temp != null) {
-					temp.setTcpNoDelay(true);
-					temp.setPerformancePreferences(0, 2, 1);
-					Stream s = new Stream(temp);
-					new UnVerifyedPlayer(s);
+					System.out.println(temp.getInetAddress().toString());
+					new UnVerifyedPlayer(new Stream(temp));
 				}
-			} catch (Exception e) {
-				
+			} catch (IOException e) {
+				if (!(e instanceof SocketTimeoutException))
+					e.printStackTrace();
 			}
 		}
 		
@@ -37,7 +35,7 @@ public class NetworkManager implements Runnable {
 			listensocket.setSoTimeout(100);
 			new Thread(this).start();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("error");
 		}
 	}
 	

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import com.podts.solarserver.Server;
+import com.podts.solarserver.network.packets.Packet_Login;
 
 
 
@@ -180,6 +181,10 @@ public abstract class Packet {
 	
 	public Packet(Stream s) {
 		stream = s;
+	}
+	
+	static {
+		Packet.addPacket(new Packet_Login());
 	}
 	
 }

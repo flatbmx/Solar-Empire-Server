@@ -2,6 +2,8 @@ package com.podts.solarserver;
 
 import java.util.logging.Logger;
 
+import com.podts.solarserver.console.Console;
+import com.podts.solarserver.console.GameLogger;
 import com.podts.solarserver.interfaces.Consolable;
 import com.podts.solarserver.interfaces.Namable;
 import com.podts.solarserver.network.NetworkManager;
@@ -47,15 +49,22 @@ public class Server implements Namable, Consolable {
 	}
 	
 	private Server(String name) {
+		new Console();
+		logger = new GameLogger("Server");
 		networkmanager = new NetworkManager();
 		universe = new Universe("Uni");
 	}
 	
 	public static void main(String[] args) {
-		
+		if (args.length > 0) {
+			for (String arg : args) {
+				if (arg.equalsIgnoreCase("-nojline")) {
+					Console.setJline(false);
+					continue;
+				}
+			}
+		}
 		getServer();
-		Server.run = false;
-		
 	}
 	
 }
