@@ -26,6 +26,10 @@ public class Credits {
 		amount -= c;
 	}
 	
+	public boolean isFull() {
+		return amount == max;
+	}
+	
 	public Credits() {
 		
 	}
