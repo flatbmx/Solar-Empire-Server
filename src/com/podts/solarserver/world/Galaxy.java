@@ -4,17 +4,27 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.podts.solarserver.RecycledIntList;
+import com.podts.solarserver.entity.Identifiable;
 import com.podts.solarserver.interfaces.HasName;
 
-public class Galaxy implements HasName {
+public class Galaxy implements HasName, Identifiable {
+	
+	private static RecycledIntList ids = new RecycledIntList();
 	
 	private String name;
+	private int id;
 	private Universe universe;
-	private Map<String,System> systems = new ConcurrentHashMap<String,System>();
+	private Map<String,StarSystem> systems = new ConcurrentHashMap<String,StarSystem>();
 	
 	@Override
 	public String getName() {
 		return name;
+	}
+	
+	@Override
+	public int getID() {
+		return id;
 	}
 	
 	public Universe getUniverse() {
@@ -28,20 +38,25 @@ public class Galaxy implements HasName {
 		universe.addGalaxy(this);
 	}
 	
-	public Collection<System> getSystems() {
+	public Collection<StarSystem> getSystems() {
 		return systems.values();
 	}
 	
-	public void addSystem(System s) {
+	public StarSystem getSystem(String name) {
+		return systems.get(name);
+	}
+	
+	public void addSystem(StarSystem s) {
 		systems.put(s.getName(), s);
 	}
 	
-	public void removeSystem(System s) {
+	public void removeSystem(StarSystem s) {
 		systems.remove(s.getName());
 	}
 	
 	public Galaxy(String name) {
 		this.name = name;
+		id = ids.getID();
 	}
 	
 }

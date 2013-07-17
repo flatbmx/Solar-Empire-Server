@@ -81,7 +81,7 @@ public enum ANSIColor {
 	/**
 	* Sets the background color to white.
 	*/
-	BACKGROUND_WHITE(47),;
+	BACKGROUND_WHITE(47);
 	
 	private int id;
 	

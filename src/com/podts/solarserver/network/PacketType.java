@@ -5,7 +5,9 @@ import com.podts.solarserver.interfaces.HasName;
 
 public enum PacketType implements HasName {
 	
-	LOGIN((byte)1);
+	LOGIN((byte)1),
+	PING((byte)2),
+	WORLD((byte)3);
 	
 	private byte opcode;
 	

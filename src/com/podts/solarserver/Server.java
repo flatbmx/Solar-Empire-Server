@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import com.podts.solarserver.console.Console;
 import com.podts.solarserver.console.GameLogger;
+import com.podts.solarserver.entity.PlayerManager;
 import com.podts.solarserver.interfaces.Consolable;
 import com.podts.solarserver.interfaces.Namable;
 import com.podts.solarserver.network.NetworkManager;
@@ -53,6 +54,7 @@ public class Server implements Namable, Consolable {
 		logger = new GameLogger("Server");
 		networkmanager = new NetworkManager();
 		universe = new Universe("Uni");
+		new PlayerManager(100);
 	}
 	
 	public static void main(String[] args) {

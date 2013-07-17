@@ -165,6 +165,7 @@ public abstract class Packet {
 	
 	public void send() {
 		
+		payload = new PayLoad();
 		generatepayload();
 		sendPacket();
 		

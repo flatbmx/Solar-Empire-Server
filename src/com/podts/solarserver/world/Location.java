@@ -4,7 +4,7 @@ public class Location {
 	
 	public static final Location NOWHERE = null;
 	
-	private System system;
+	private StarSystem system;
 	private double x, y;
 
 	public double getX() {
@@ -23,11 +23,11 @@ public class Location {
 		this.y = y;
 	}
 
-	public System getSystem() {
+	public StarSystem getSystem() {
 		return system;
 	}
 
-	public void setSystem(System system) {
+	public void setSystem(StarSystem system) {
 		this.system = system;
 	}
 	
@@ -78,7 +78,7 @@ public class Location {
 	}
 	
 	public double getAngleRads(Location o) {
-		return Math.atan2(o.getX() - getX(), o.getY() - getY());
+		return Math.atan2(o.getX() - getX(), o.getY() - getY())-90;
 	}
 	
 	public double getAngleRads(Locatable o) {
@@ -93,7 +93,7 @@ public class Location {
 		return getAngleDegrees(o.getLocation());
 	}
 	
-	public Location(System system, double x, double y) {
+	public Location(StarSystem system, double x, double y) {
 		setSystem(system);
 		setX(x);
 		setY(y);

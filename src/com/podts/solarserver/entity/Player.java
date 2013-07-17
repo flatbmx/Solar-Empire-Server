@@ -4,12 +4,14 @@ import com.podts.solarserver.economy.Creditable;
 import com.podts.solarserver.economy.Credits;
 import com.podts.solarserver.interfaces.Namable;
 import com.podts.solarserver.network.Stream;
+import com.podts.solarserver.network.packets.Packet_World;
 import com.podts.solarserver.world.Locatable;
 import com.podts.solarserver.world.Location;
 
-public class Player implements Namable, Locatable, ShipOwner, Creditable {
+public class Player implements Namable, Locatable, ShipOwner, Creditable, Identifiable {
 	
 	private String name;
+	private int id;
 	private Stream stream;
 	private Ship ship;
 	private Credits credits;
@@ -22,6 +24,11 @@ public class Player implements Namable, Locatable, ShipOwner, Creditable {
 	@Override
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public int getID() {
+		return id;
 	}
 	
 	public Stream getStream() {
@@ -65,6 +72,7 @@ public class Player implements Namable, Locatable, ShipOwner, Creditable {
 		if (player != null) {
 			if (player.isVerifyed()) {
 				this.stream = player.getStream();
+				new Packet_World(stream).send();
 			}
 		}
 	}

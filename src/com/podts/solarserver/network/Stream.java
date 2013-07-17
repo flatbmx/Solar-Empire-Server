@@ -9,6 +9,8 @@ import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
 
+import com.podts.solarserver.network.packets.Packet_Ping;
+
 public class Stream {
 	
 	private Socket socket;
@@ -53,17 +55,7 @@ public class Stream {
 		
 		lastping = System.currentTimeMillis();
 		
-		try {
-			this.writeInt(1);
-			this.flush();
-		} catch (IOException e) {
-			eof();
-		}
-		
-		//PingPacket p = new PingPacket();
-		//p.setStream(this);
-		
-		//PacketSender.addPacket(p);
+		new Packet_Ping(this).send();
 		
 	}
 	

@@ -1,5 +1,7 @@
 package com.podts.solarserver.network.packets;
 
+import com.podts.solarserver.Server;
+import com.podts.solarserver.entity.PlayerManager;
 import com.podts.solarserver.network.Packet;
 import com.podts.solarserver.network.PacketType;
 
@@ -46,7 +48,18 @@ public class Packet_Login extends Packet {
 		username = getPayLoad().readString();
 		password = getPayLoad().readString();
 		
-		System.out.println(version+username+password);
+		if (PlayerManager.getPlayerManager().getPlayer(username) != null) {
+			Server.getServer().getNetworkManager().getLogger().info(username + " tryed logging in.");
+			setResponseCode(Packet_Login.RESPONSE_DENY);
+			setResponseMessage("There is already a user logged in as " + username);
+		}
+		else {
+			Server.getServer().getNetworkManager().getLogger().info(username + " logging in.");
+			setResponseCode(Packet_Login.RESPONSE_ACCEPT);
+			setResponseMessage("Sucessfully logged in.");
+		}
+			
+		send();
 		
 	}
 

@@ -4,6 +4,7 @@ import com.podts.solarserver.Server;
 import com.podts.solarserver.interfaces.HasName;
 import com.podts.solarserver.network.Packet;
 import com.podts.solarserver.network.Stream;
+import com.podts.solarserver.network.packets.Packet_Login;
 
 public class UnVerifyedPlayer implements HasName, Runnable {
 	
@@ -35,6 +36,7 @@ public class UnVerifyedPlayer implements HasName, Runnable {
 
 	@Override
 	public void run() {
+		Server.getServer().getUniverse().save();
 		while (Server.run) {
 			try {
 				stream.ping();
@@ -45,6 +47,13 @@ public class UnVerifyedPlayer implements HasName, Runnable {
 					Packet packet = Packet.readPacket(stream);
 					if (packet != null) {
 						packet.handle();
+						if (packet instanceof Packet_Login) {
+							Packet_Login p = (Packet_Login) packet;
+							if (p.getResponseCode() == Packet_Login.RESPONSE_ACCEPT) {
+								verifyed = true;
+								new Player(this);
+							}
+						}
 					}
 				}
 			} catch (Exception e) {
