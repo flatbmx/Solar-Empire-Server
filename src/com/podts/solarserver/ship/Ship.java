@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.podts.solarserver.communication.Alertable;
 import com.podts.solarserver.entity.GravitableEntity;
 import com.podts.solarserver.entity.ShipModel;
 import com.podts.solarserver.entity.ShipOwner;
@@ -17,7 +18,7 @@ import com.podts.solarserver.world.Location;
 import com.podts.solarserver.world.Rotatable;
 import com.podts.solarserver.world.RotatableLocation;
 
-public class Ship extends GravitableEntity implements Rotatable, Acceleratable, Dockable {
+public class Ship extends GravitableEntity implements Rotatable, Acceleratable, Dockable, Alertable {
 	
 	private Dock dock;
 	private ShipOwner owner;
@@ -41,6 +42,10 @@ public class Ship extends GravitableEntity implements Rotatable, Acceleratable, 
 		return model;
 	}
 	
+	public Engines getEngines() {
+		return (Engines) getCategory("Engines");
+	}
+	
 	@Override
 	public RotatableLocation getRotatableLocation() {
 		return (RotatableLocation) getLocation();
@@ -48,20 +53,22 @@ public class Ship extends GravitableEntity implements Rotatable, Acceleratable, 
 	
 	@Override
 	public void moveTo(Location l) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void move(HasRotation r, Force f) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Force getMaximumForce() {
-		// TODO Auto-generated method stub
-		return null;
+		return getEngines().getMaximumForce();
+	}
+	
+	@Override
+	public void sendAlert(String message) {
+		owner.sendAlert(message);
 	}
 	
 	@Override

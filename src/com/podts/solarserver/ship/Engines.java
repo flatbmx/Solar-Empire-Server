@@ -1,9 +1,12 @@
 package com.podts.solarserver.ship;
 
+import com.podts.solarserver.world.Force;
+
 public class Engines extends ShipCategory {
 	
 	private double fuel, maxfuel;
 	private double speed, maxspeed, acceleration;
+	private Force maxforce;
 	
 	public double getFuel() {
 		return fuel;
@@ -23,6 +26,10 @@ public class Engines extends ShipCategory {
 	
 	public double getAcceleration() {
 		return acceleration;
+	}
+	
+	public Force getMaximumForce() {
+		return maxforce;
 	}
 	
 	public Engines(double maxspeed, double acceleration, double maxfuel) {

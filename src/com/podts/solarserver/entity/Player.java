@@ -68,6 +68,11 @@ public class Player implements Namable, Rotatable, ShipOwner, Creditable, Identi
 	}
 	
 	@Override
+	public void sendAlert(String message) {
+		
+	}
+	
+	@Override
 	public Credits getCredits() {
 		return credits;
 	}
