@@ -5,7 +5,7 @@ public class Location {
 	public static final Location NOWHERE = null;
 	
 	private StarSystem system;
-	private double x, y;
+	private volatile double x, y;
 
 	public double getX() {
 		return x;
@@ -22,7 +22,7 @@ public class Location {
 	public void setY(double y) {
 		this.y = y;
 	}
-
+	
 	public StarSystem getSystem() {
 		return system;
 	}

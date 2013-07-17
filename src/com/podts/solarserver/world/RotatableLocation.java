@@ -1,10 +1,8 @@
 package com.podts.solarserver.world;
 
-public class RotatableLocation extends Location {
+public class RotatableLocation extends Location implements HasRotation {
 	
-	public static final double DIRECTION_UP = 0, DIRECTION_RIGHT = 90, DIRECTION_DOWN = 180, DIRECTION_LEFT = 270;
-	
-	private double rotation;
+	private volatile double rotation;
 	
 	public double getRotation() {
 		return rotation;
@@ -20,7 +18,7 @@ public class RotatableLocation extends Location {
 	}
 	
 	public void face(Location o) {
-		rotation = getAngleRads(o);
+		rotation = getAngleDegrees(o);
 	}
 	
 	public void face(Locatable o) {
@@ -28,7 +26,7 @@ public class RotatableLocation extends Location {
 	}
 	
 	public boolean isFacing(Location o) {
-		return isFacing(o,15);
+		return isFacing(o,10);
 	}
 	
 	public boolean isFacing(Locatable o) {
@@ -37,20 +35,28 @@ public class RotatableLocation extends Location {
 		return isFacing(o.getLocation());
 	}
 	
-	public boolean isFacing(Location o, double offset) {
+	public boolean isFacing(Direction d) {
+		return isFacing(d,15);
+	}
+	
+	public boolean isFacing(Direction d, double error) {
+		return Math.abs(getRotation()-d.getRotation()) < error;
+	}
+	
+	public boolean isFacing(Location o, double error) {
 		if (o == null)
 			return false;
 		if (sameSystem(o)) {
-			if (Math.abs(getRotation()-getAngleDegrees(o)) <= offset)
+			if (Math.abs(getRotation()-getAngleDegrees(o)) <= error)
 				return true;
 		}
 		return false;
 	}
 	
-	public boolean isFacing(Locatable o, double offset) {
+	public boolean isFacing(Locatable o, double error) {
 		if (o == null)
 			return false;
-		return isFacing(o.getLocation(),offset);
+		return isFacing(o.getLocation(),error);
 	}
 	
 	public RotatableLocation(StarSystem system, double x, double y) {
@@ -61,5 +67,11 @@ public class RotatableLocation extends Location {
 		super(system, x, y);
 		setRotation(r);
 	}
-
+	
+	public RotatableLocation(StarSystem system, double x, double y, Direction d) {
+		super(system, x, y);
+		if (d != null)
+			setRotation(d.getRotation());
+	}
+	
 }

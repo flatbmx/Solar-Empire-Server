@@ -5,6 +5,6 @@ public interface Movable extends Locatable {
 	public Velocity getVelocity();
 	public void setVelocity(Velocity v);
 	
-	public void move();
+	public void calculatemove();
 	
 }

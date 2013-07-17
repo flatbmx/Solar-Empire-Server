@@ -11,6 +11,10 @@ public class Util {
 		return rand;
 	}
 	
+	public static boolean between(Number n, Number min, Number max) {
+		return n.doubleValue() <= min.doubleValue() && n.doubleValue() >= max.doubleValue();
+	}
+	
 	public static String titleCase(String in) {
 		String s = in.toLowerCase();
 		StringBuilder titlecase = new StringBuilder();

@@ -5,10 +5,12 @@ import com.podts.solarserver.economy.Credits;
 import com.podts.solarserver.interfaces.Namable;
 import com.podts.solarserver.network.Stream;
 import com.podts.solarserver.network.packets.Packet_World;
-import com.podts.solarserver.world.Locatable;
+import com.podts.solarserver.ship.Ship;
 import com.podts.solarserver.world.Location;
+import com.podts.solarserver.world.Rotatable;
+import com.podts.solarserver.world.RotatableLocation;
 
-public class Player implements Namable, Locatable, ShipOwner, Creditable, Identifiable {
+public class Player implements Namable, Rotatable, ShipOwner, Creditable, Identifiable {
 	
 	private String name;
 	private int id;
@@ -50,6 +52,13 @@ public class Player implements Namable, Locatable, ShipOwner, Creditable, Identi
 		if (ship == null)
 			return null;
 		return ship.getLocation();
+	}
+	
+	@Override
+	public RotatableLocation getRotatableLocation() {
+		if (ship == null)
+			return null;
+		return (RotatableLocation) getLocation();
 	}
 	
 	@Override
