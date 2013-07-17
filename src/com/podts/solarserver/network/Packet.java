@@ -3,8 +3,7 @@ package com.podts.solarserver.network;
 import java.io.IOException;
 import java.util.HashMap;
 
-import com.podts.solarserver.Server;
-import com.podts.solarserver.network.packets.Packet_Login;
+import com.podts.solarserver.network.packets.*;
 
 
 
@@ -105,7 +104,6 @@ public abstract class Packet {
 				getStream().writeBytes(payload.getPayLoad());
 			getStream().getOutstream().flush();
 		} catch (IOException e) {
-			Server.getServer().getLogger().info("Stream closed");
 			try {
 				getStream().eof();
 			} catch (IOException e1) {
@@ -153,7 +151,7 @@ public abstract class Packet {
 			
 		} catch (IOException e) {
 			
-			System.out.println("Stream closed!");
+			
 			
 		}
 		
@@ -186,6 +184,7 @@ public abstract class Packet {
 	
 	static {
 		Packet.addPacket(new Packet_Login());
+		Packet.addPacket(new Packet_World());
 	}
 	
 }

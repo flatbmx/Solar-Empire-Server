@@ -13,7 +13,11 @@ public class Packet_World extends Packet {
 		super(PacketType.WORLD.getOpCode());
 		setStream(s);
 	}
-
+	
+	public Packet_World() {
+		super(PacketType.WORLD.getOpCode());
+	}
+	
 	@Override
 	public void handle() {
 		
@@ -43,6 +47,7 @@ public class Packet_World extends Packet {
 					for (StarSystem s : g.getSystems()) {
 						
 						getPayLoad().writeString(s.getName());
+						getPayLoad().writeDouble(s.getRadius());
 						
 					}
 					
