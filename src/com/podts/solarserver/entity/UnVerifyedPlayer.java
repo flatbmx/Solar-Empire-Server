@@ -52,6 +52,7 @@ public class UnVerifyedPlayer implements HasName, Runnable {
 							if (p.getResponseCode() == Packet_Login.RESPONSE_ACCEPT) {
 								verifyed = true;
 								new Player(this);
+								return;
 							}
 						}
 					}
@@ -65,7 +66,7 @@ public class UnVerifyedPlayer implements HasName, Runnable {
 			}
 			
 		}
-		System.out.println("Lost A Connection");
+		Server.getServer().getNetworkManager().getLogger().info("Lost connection [" + stream.getIP() + "]");
 	}
 	
 }

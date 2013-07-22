@@ -22,7 +22,6 @@ public class NetworkManager implements Runnable, Consolable {
 			try {
 				Socket temp = listensocket.accept();
 				if (temp != null) {
-					System.out.println(temp.getInetAddress().toString());
 					new UnVerifyedPlayer(new Stream(temp));
 				}
 			} catch (IOException e) {
