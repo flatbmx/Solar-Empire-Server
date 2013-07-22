@@ -67,6 +67,11 @@ public class Ship extends GravitableEntity implements Rotatable, Acceleratable, 
 	}
 	
 	@Override
+	public void sendMessage(String message) {
+		owner.sendMessage(message);
+	}
+	
+	@Override
 	public void sendAlert(String message) {
 		owner.sendAlert(message);
 	}
