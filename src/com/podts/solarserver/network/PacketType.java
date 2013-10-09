@@ -7,7 +7,8 @@ public enum PacketType implements HasName {
 	
 	LOGIN((byte)1),
 	PING((byte)2),
-	WORLD((byte)3);
+	WORLD((byte)3),
+	PLAYNOW((byte)4);
 	
 	private byte opcode;
 	

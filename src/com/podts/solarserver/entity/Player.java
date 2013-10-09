@@ -4,6 +4,7 @@ import com.podts.solarserver.economy.Creditable;
 import com.podts.solarserver.economy.Credits;
 import com.podts.solarserver.interfaces.Namable;
 import com.podts.solarserver.network.Stream;
+import com.podts.solarserver.network.packets.Packet_PlayNow;
 import com.podts.solarserver.network.packets.Packet_World;
 import com.podts.solarserver.ship.Ship;
 import com.podts.solarserver.world.Location;
@@ -68,6 +69,11 @@ public class Player implements Namable, Rotatable, ShipOwner, Creditable, Identi
 	}
 	
 	@Override
+	public void sendMessage(String message) {
+		
+	}
+	
+	@Override
 	public void sendAlert(String message) {
 		
 	}
@@ -87,6 +93,7 @@ public class Player implements Namable, Rotatable, ShipOwner, Creditable, Identi
 			if (player.isVerifyed()) {
 				this.stream = player.getStream();
 				new Packet_World(stream).send();
+				new Packet_PlayNow(stream).send();
 			}
 		}
 	}

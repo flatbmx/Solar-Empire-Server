@@ -12,7 +12,7 @@ public class Util {
 	}
 	
 	public static boolean between(Number n, Number min, Number max) {
-		return n.doubleValue() <= min.doubleValue() && n.doubleValue() >= max.doubleValue();
+		return n.doubleValue() >= min.doubleValue() && n.doubleValue() <= max.doubleValue();
 	}
 	
 	public static String titleCase(String in) {
