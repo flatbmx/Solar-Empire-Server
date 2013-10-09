@@ -11,26 +11,35 @@ import com.podts.solarserver.interfaces.HasName;
 
 public class Universe implements HasName, Writable {
 	
-	public StarSystem startingsys;
-	
 	private String name;
-	private Map<String,Galaxy> galaxys = new ConcurrentHashMap<String,Galaxy>();
+	private Map<String,Chunk> chunks = new ConcurrentHashMap<String,Chunk>();
 	
 	@Override
 	public String getName() {
 		return name;
 	}
 	
-	public Collection<Galaxy> getGalaxys() {
-		return galaxys.values();
+	public Collection<Chunk> getChunks() {
+		return chunks.values();
 	}
 	
-	public void addGalaxy(Galaxy g) {
-		galaxys.put(g.getName(), g);
+	public Chunk getChunkByLocation(Location l) {
+		if (l == null)
+			return null;
+		int x = (int) (l.getX()/Chunk.CHUNK_SIZE);
+		int y = (int) (l.getY()/Chunk.CHUNK_SIZE);
+		
+		Chunk c = chunks.get(x + "," + y);
+		if (c == null) {
+			c = new Chunk(x,y);
+			chunks.put(x + "" + y, c);
+		}
+		
+		return c;
 	}
 	
-	public void removeGalaxy(Galaxy g) {
-		galaxys.remove(g.getName());
+	public Chunk getChunk(int x, int y) {
+		return chunks.get(x + "," + y);
 	}
 	
 	@Override
@@ -45,15 +54,6 @@ public class Universe implements HasName, Writable {
 	
 	public Universe(String name) {
 		this.name = name;
-		Galaxy g = new Galaxy("Milky Way");
-		StarSystem sol = new StarSystem("Sol");
-		g.addSystem(sol);
-		g.addSystem(new StarSystem("Alpha Centauri"));
-		addGalaxy(g);
-		addGalaxy(new Galaxy("Andromida"));
-		
-		startingsys = sol;
-		
 	}
 	
 }

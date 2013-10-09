@@ -46,10 +46,8 @@ public class RotatableLocation extends Location implements HasRotation {
 	public boolean isFacing(Location o, double error) {
 		if (o == null)
 			return false;
-		if (sameSystem(o)) {
-			if (Math.abs(getRotation()-getAngleDegrees(o)) <= error)
-				return true;
-		}
+		if (Math.abs(getRotation()-getAngleDegrees(o)) <= error)
+			return true;
 		return false;
 	}
 	
@@ -59,17 +57,17 @@ public class RotatableLocation extends Location implements HasRotation {
 		return isFacing(o.getLocation(),error);
 	}
 	
-	public RotatableLocation(StarSystem system, double x, double y) {
-		super(system, x, y);
+	public RotatableLocation(double x, double y) {
+		super(x, y);
 	}
 	
-	public RotatableLocation(StarSystem system, double x, double y, double r) {
-		super(system, x, y);
+	public RotatableLocation(double x, double y, double r) {
+		super(x, y);
 		setRotation(r);
 	}
 	
-	public RotatableLocation(StarSystem system, double x, double y, Direction d) {
-		super(system, x, y);
+	public RotatableLocation(double x, double y, Direction d) {
+		super(x, y);
 		if (d != null)
 			setRotation(d.getRotation());
 	}

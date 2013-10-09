@@ -55,7 +55,7 @@ public class GravitableEntity extends Entity implements Gravitable, Collidable {
 	
 	@Override
 	public boolean isColliding(Collidable c) {
-		if (c == null || c.getLocation() == null || !getLocation().sameSystem(c))
+		if (c == null || c.getLocation() == null)
 			return false;
 		return getLocation().distance(c) < Math.max(getCollisionRadius(), c.getCollisionRadius());
 	}

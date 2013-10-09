@@ -4,8 +4,8 @@ public class Location {
 	
 	public static final Location NOWHERE = null;
 	
-	private StarSystem system;
 	private volatile double x, y;
+	private Chunk chunk;
 
 	public double getX() {
 		return x;
@@ -23,50 +23,18 @@ public class Location {
 		this.y = y;
 	}
 	
-	public StarSystem getSystem() {
-		return system;
-	}
-
-	public void setSystem(StarSystem system) {
-		this.system = system;
+	public void move(double x, double y) {
+		this.x += x;
+		this.y += y;
 	}
 	
-	public boolean isInGalaxy(Galaxy g) {
-		if (g == null)
-			return false;
-		if (system == null)
-			return false;
-		if (system.getGalaxy() == null)
-			return false;
-		return g.getName().equals(system.getGalaxy().getName());
+	public Chunk getChunk() {
+		return chunk;
 	}
 	
-	public boolean sameGalaxy(Location o) {
-		if (system == null || o == NOWHERE || o.system == null)
-			return false;
-		if (system.getGalaxy() != null && o.system.getGalaxy() != null) {
-			if (system.getGalaxy() == o.system.getGalaxy())
-				return true;
-		}
-		return false;
-	}
-	
-	public boolean sameGalaxy(Locatable o) {
-		if (o == null)
-			return false;
-		return sameGalaxy(o.getLocation());
-	}
-	
-	public boolean sameSystem(Location o) {
-		if (system == null || o == NOWHERE || o.system == null)
-			return false;
-		return system == o.system;
-	}
-	
-	public boolean sameSystem(Locatable o) {
-		if (o == null)
-			return false;
-		return sameSystem(o.getLocation());
+	public void setChunk(Chunk c) {
+		if (c != null)
+			chunk = c;
 	}
 	
 	public double distance(Location o) {
@@ -93,8 +61,7 @@ public class Location {
 		return getAngleDegrees(o.getLocation());
 	}
 	
-	public Location(StarSystem system, double x, double y) {
-		setSystem(system);
+	public Location(double x, double y) {
 		setX(x);
 		setY(y);
 	}

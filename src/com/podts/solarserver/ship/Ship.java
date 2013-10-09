@@ -75,8 +75,6 @@ public class Ship extends GravitableEntity implements Rotatable, Acceleratable, 
 	public boolean isHidden(Hidable h) {
 		if (getLocation().equals(Location.NOWHERE) || h.getLocation().equals(Location.NOWHERE))
 			return true;
-		if (getLocation().getSystem() != h.getLocation().getSystem())
-			return true;
 		if (!(h instanceof Dockable) && isDocked())
 			return true;
 		if (!getDock().equals(((Dockable)h).getDock()))
