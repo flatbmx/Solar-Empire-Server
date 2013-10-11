@@ -184,7 +184,7 @@ public abstract class Packet {
 	
 	static {
 		Packet.addPacket(new Packet_Login());
-		Packet.addPacket(new Packet_World());
+		Packet.addPacket(new Packet_Entity());
 		Packet.addPacket(new Packet_PlayNow());
 	}
 	

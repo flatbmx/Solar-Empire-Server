@@ -261,6 +261,10 @@ public class PayLoad {
 		
 	}
 	
+	public void write(Sendable s) {
+		s.send(this);
+	}
+	
 	public PayLoad() {
 		
 	}

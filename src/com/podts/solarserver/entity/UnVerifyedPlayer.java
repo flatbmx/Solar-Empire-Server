@@ -36,7 +36,6 @@ public class UnVerifyedPlayer implements HasName, Runnable {
 
 	@Override
 	public void run() {
-		Server.getServer().getUniverse().save();
 		while (Server.run) {
 			try {
 				stream.ping();

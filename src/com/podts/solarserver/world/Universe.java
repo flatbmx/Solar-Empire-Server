@@ -4,12 +4,9 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.jnbt.Tag;
-
-import com.podts.solarserver.filesystem.Writable;
 import com.podts.solarserver.interfaces.HasName;
 
-public class Universe implements HasName, Writable {
+public class Universe implements HasName {
 	
 	private String name;
 	private Map<String,Chunk> chunks = new ConcurrentHashMap<String,Chunk>();
@@ -40,16 +37,6 @@ public class Universe implements HasName, Writable {
 	
 	public Chunk getChunk(int x, int y) {
 		return chunks.get(x + "," + y);
-	}
-	
-	@Override
-	public boolean save() {
-		return true;
-	}
-	
-	@Override
-	public boolean write(Map<String,Tag> m) {
-		return true;
 	}
 	
 	public Universe(String name) {

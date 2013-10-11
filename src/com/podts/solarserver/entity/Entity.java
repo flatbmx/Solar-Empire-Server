@@ -2,14 +2,16 @@ package com.podts.solarserver.entity;
 
 import com.podts.solarserver.interfaces.Namable;
 import com.podts.solarserver.world.Chunk;
-import com.podts.solarserver.world.Locatable;
 import com.podts.solarserver.world.Location;
+import com.podts.solarserver.world.Movable;
+import com.podts.solarserver.world.Velocity;
 
-public class Entity implements Locatable, Namable, Identifiable {
+public class Entity implements Movable, Namable, Identifiable {
 	
 	private String name;
 	private int id;
 	private Location location;
+	private Velocity velocity;
 
 	@Override
 	public String getName() {
@@ -59,6 +61,22 @@ public class Entity implements Locatable, Namable, Identifiable {
 	
 	public Entity(Location location) {
 		this.location = location;
+	}
+
+	@Override
+	public Velocity getVelocity() {
+		return velocity;
+	}
+
+	@Override
+	public void setVelocity(Velocity v) {
+		velocity = v;
+	}
+
+	@Override
+	public void calculatemove() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

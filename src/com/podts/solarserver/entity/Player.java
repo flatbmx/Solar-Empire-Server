@@ -1,11 +1,11 @@
 package com.podts.solarserver.entity;
 
+import com.podts.solarserver.Server;
 import com.podts.solarserver.economy.Creditable;
 import com.podts.solarserver.economy.Credits;
 import com.podts.solarserver.interfaces.Namable;
 import com.podts.solarserver.network.Stream;
 import com.podts.solarserver.network.packets.Packet_PlayNow;
-import com.podts.solarserver.network.packets.Packet_World;
 import com.podts.solarserver.ship.Ship;
 import com.podts.solarserver.world.Location;
 import com.podts.solarserver.world.Rotatable;
@@ -92,7 +92,7 @@ public class Player implements Namable, Rotatable, ShipOwner, Creditable, Identi
 		if (player != null) {
 			if (player.isVerifyed()) {
 				this.stream = player.getStream();
-				new Packet_World(stream).send();
+				Server.getServer().getLogger().info("sending playnow packet");
 				new Packet_PlayNow(stream).send();
 			}
 		}

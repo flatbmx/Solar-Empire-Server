@@ -1,6 +1,6 @@
 package com.podts.solarserver.economy;
 
-public interface Tradable extends Creditable {
+public interface Tradable extends Valuable {
 	
 	
 	

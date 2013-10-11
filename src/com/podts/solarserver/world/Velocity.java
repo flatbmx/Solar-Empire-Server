@@ -1,6 +1,9 @@
 package com.podts.solarserver.world;
 
-public class Velocity {
+import com.podts.solarserver.network.PayLoad;
+import com.podts.solarserver.network.Sendable;
+
+public class Velocity implements Sendable {
 	
 	private double x, y;
 
@@ -21,6 +24,14 @@ public class Velocity {
 	}
 	
 	public Velocity() {
+		
+	}
+	
+	@Override
+	public void send(PayLoad payload) {
+		
+		payload.writeDouble(x);
+		payload.writeDouble(y);
 		
 	}
 	

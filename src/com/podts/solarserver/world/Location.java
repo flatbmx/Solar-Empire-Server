@@ -1,6 +1,9 @@
 package com.podts.solarserver.world;
 
-public class Location {
+import com.podts.solarserver.network.PayLoad;
+import com.podts.solarserver.network.Sendable;
+
+public class Location implements Sendable {
 	
 	public static final Location NOWHERE = null;
 	
@@ -37,6 +40,13 @@ public class Location {
 			chunk = c;
 	}
 	
+	public void shift(Location location) {
+		if (location == null)
+			return;
+		setX(getX() + location.getX());
+		setY(getY() + location.getY());
+	}
+	
 	public double distance(Location o) {
 		return Math.sqrt( (x-o.getX())*(x-o.getX()) + (y-o.getY())*(y-o.getY()) );
 	}
@@ -64,6 +74,14 @@ public class Location {
 	public Location(double x, double y) {
 		setX(x);
 		setY(y);
+	}
+
+	@Override
+	public void send(PayLoad payload) {
+		
+		payload.writeDouble(x);
+		payload.writeDouble(y);
+		
 	}
 	
 }
