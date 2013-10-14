@@ -50,7 +50,6 @@ public class UnVerifyedPlayer implements HasName, Runnable {
 							Packet_Login p = (Packet_Login) packet;
 							if (p.getResponseCode() == Packet_Login.RESPONSE_ACCEPT) {
 								verifyed = true;
-								new Player(this);
 								return;
 							}
 						}

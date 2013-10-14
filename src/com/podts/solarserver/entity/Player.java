@@ -1,23 +1,19 @@
 package com.podts.solarserver.entity;
 
 import com.podts.solarserver.Server;
-import com.podts.solarserver.economy.Creditable;
-import com.podts.solarserver.economy.Credits;
 import com.podts.solarserver.interfaces.Namable;
+import com.podts.solarserver.network.Packet;
 import com.podts.solarserver.network.Stream;
 import com.podts.solarserver.network.packets.Packet_PlayNow;
-import com.podts.solarserver.ship.Ship;
-import com.podts.solarserver.world.Location;
-import com.podts.solarserver.world.Rotatable;
-import com.podts.solarserver.world.RotatableLocation;
 
-public class Player implements Namable, Rotatable, ShipOwner, Creditable, Identifiable {
+public class Player implements Namable, Identifiable, Runnable {
+	
+	private Thread thread;
+	private boolean loggedin;
 	
 	private String name;
 	private int id;
 	private Stream stream;
-	private Ship ship;
-	private Credits credits;
 	
 	@Override
 	public String getName() {
@@ -38,63 +34,39 @@ public class Player implements Namable, Rotatable, ShipOwner, Creditable, Identi
 		return stream;
 	}
 	
-	@Override
-	public Ship getShip() {
-		return ship;
-	}
-	
-	@Override
-	public void setShip(Ship ship) {
-		this.ship = ship;
-	}
-	
-	@Override
-	public Location getLocation() {
-		if (ship == null)
-			return null;
-		return ship.getLocation();
-	}
-	
-	@Override
-	public RotatableLocation getRotatableLocation() {
-		if (ship == null)
-			return null;
-		return (RotatableLocation) getLocation();
-	}
-	
-	@Override
-	public void setLocation(Location location) {
-		if (ship != null)
-			ship.setLocation(location);
-	}
-	
-	@Override
-	public void sendMessage(String message) {
-		
-	}
-	
-	@Override
-	public void sendAlert(String message) {
-		
-	}
-	
-	@Override
-	public Credits getCredits() {
-		return credits;
+	public Player(String username, Stream stream) {
+		name = username;
+		this.stream = stream;
+		loggedin = true;
+		thread = new Thread(this);
+		thread.start();
+		new Packet_PlayNow(stream).send();
 	}
 
 	@Override
-	public void setCredits(Credits c) {
-		credits = c;
-	}
-	
-	public Player(UnVerifyedPlayer player) {
-		if (player != null) {
-			if (player.isVerifyed()) {
-				this.stream = player.getStream();
-				Server.getServer().getLogger().info("sending playnow packet");
-				new Packet_PlayNow(stream).send();
+	public void run() {
+		while (Server.run && loggedin) {
+			try {
+				stream.ping();
+				if (stream.isEOF()) {
+					Server.getServer().getNetworkManager().getLogger().info(getName() + " disconnected.");
+					break;
+				}
+				while (stream.getAvailable() > 0) {
+					Packet packet = Packet.readPacket(stream);
+					if (packet != null) {
+						packet.handle();
+					}
+				}
+			} catch (Exception e) {
+				Server.getServer().getNetworkManager().getLogger().info(getName() + " disconnected.");
+				break;
 			}
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+			}
+			
 		}
 	}
 	

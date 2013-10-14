@@ -84,4 +84,13 @@ public class Location implements Sendable {
 		
 	}
 	
+	public static Location receive(PayLoad payload) {
+		try {
+			return new Location(payload.readDouble(),payload.readDouble());
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+	
 }

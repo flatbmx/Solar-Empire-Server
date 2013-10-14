@@ -4,6 +4,9 @@ import com.podts.solarserver.entity.Entity;
 import com.podts.solarserver.network.Packet;
 import com.podts.solarserver.network.PacketType;
 import com.podts.solarserver.network.Stream;
+import com.podts.solarserver.world.Location;
+import com.podts.solarserver.world.RotatableLocation;
+import com.podts.solarserver.world.Velocity;
 
 public class Packet_Entity extends Packet {
 	
@@ -34,6 +37,12 @@ public class Packet_Entity extends Packet {
 	@Override
 	public void handle() {
 		// When a player moves.
+		byte kind = getPayLoad().readByte();
+		
+		if (kind == UPDATE_ENTITY) {
+			Location nl = RotatableLocation.receive(getPayLoad());
+			Velocity nv = Velocity.receive(getPayLoad());
+		}
 	}
 
 	@Override

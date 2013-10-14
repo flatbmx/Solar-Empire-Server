@@ -1,6 +1,7 @@
 package com.podts.solarserver.network.packets;
 
 import com.podts.solarserver.Server;
+import com.podts.solarserver.entity.Player;
 import com.podts.solarserver.entity.PlayerManager;
 import com.podts.solarserver.network.Packet;
 import com.podts.solarserver.network.PacketType;
@@ -12,6 +13,7 @@ public class Packet_Login extends Packet {
 	private float version;
 	private byte response;
 	private String username, password, responsemessage;
+	private Player player;
 	
 	public float getVersion() {
 		return version;
@@ -58,7 +60,9 @@ public class Packet_Login extends Packet {
 			setResponseCode(Packet_Login.RESPONSE_ACCEPT);
 			setResponseMessage("Sucessfully logged in.");
 		}
-			
+		
+		player = new Player(username,getStream());
+		
 		send();
 		
 	}
@@ -69,6 +73,7 @@ public class Packet_Login extends Packet {
 		getPayLoad().writeString(getResponseMessage());
 		if (getResponseCode() == RESPONSE_ACCEPT) {
 			// Send the players id.
+			getPayLoad().writeInt(player.getID());
 		}
 	}
 	

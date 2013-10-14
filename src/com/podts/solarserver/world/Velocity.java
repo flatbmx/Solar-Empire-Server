@@ -40,4 +40,13 @@ public class Velocity implements Sendable {
 		setY(y);
 	}
 	
+	public static Velocity receive(PayLoad payload) {
+		try {
+			return new Velocity(payload.readDouble(),payload.readDouble());
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+	
 }

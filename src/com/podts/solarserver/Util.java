@@ -7,15 +7,15 @@ public class Util {
 	
 	private static final Random rand = new Random();
 	
-	public static Random getRandom() {
+	public static final Random getRandom() {
 		return rand;
 	}
 	
-	public static boolean between(Number n, Number min, Number max) {
+	public static final boolean between(Number n, Number min, Number max) {
 		return n.doubleValue() >= min.doubleValue() && n.doubleValue() <= max.doubleValue();
 	}
 	
-	public static String titleCase(String in) {
+	public static final String titleCase(String in) {
 		String s = in.toLowerCase();
 		StringBuilder titlecase = new StringBuilder();
 		boolean nextTitleCase = true;
@@ -31,7 +31,7 @@ public class Util {
 		return titlecase.toString();
 	}
 	
-	public static String formatNumber(Number number) {
+	public static final String formatNumber(Number number) {
 		return NumberFormat.getInstance().format(number);
 	}
 	

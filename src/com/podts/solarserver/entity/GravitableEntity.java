@@ -5,23 +5,11 @@ import com.podts.solarserver.world.Force;
 import com.podts.solarserver.world.Gravitable;
 import com.podts.solarserver.world.Location;
 import com.podts.solarserver.world.Mass;
-import com.podts.solarserver.world.Velocity;
 
 public class GravitableEntity extends Entity implements Gravitable, Collidable {
 	
-	private Velocity v;
 	private Mass m;
 	private Force f;
-	
-	@Override
-	public Velocity getVelocity() {
-		return v;
-	}
-
-	@Override
-	public void setVelocity(Velocity v) {
-		this.v = v;
-	}
 
 	@Override
 	public void calculatemove() {

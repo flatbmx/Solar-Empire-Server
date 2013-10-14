@@ -1,5 +1,7 @@
 package com.podts.solarserver.world;
 
+import com.podts.solarserver.network.PayLoad;
+
 public class RotatableLocation extends Location implements HasRotation {
 	
 	private volatile double rotation;
@@ -57,6 +59,12 @@ public class RotatableLocation extends Location implements HasRotation {
 		return isFacing(o.getLocation(),error);
 	}
 	
+	@Override
+	public void send(PayLoad payload) {
+		super.send(payload);
+		payload.writeDouble(rotation);
+	}
+	
 	public RotatableLocation(double x, double y) {
 		super(x, y);
 	}
@@ -70,6 +78,15 @@ public class RotatableLocation extends Location implements HasRotation {
 		super(x, y);
 		if (d != null)
 			setRotation(d.getRotation());
+	}
+	
+	public static RotatableLocation receive(PayLoad payload) {
+		try {
+			return new RotatableLocation(payload.readDouble(),payload.readDouble(),payload.readDouble());
+		}
+		catch (Exception e) {
+			return null;
+		}
 	}
 	
 }
